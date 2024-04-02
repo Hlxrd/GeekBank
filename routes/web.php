@@ -9,13 +9,9 @@ use App\Http\Middleware\SellerMiddleware;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/products', [ProductController::class, 'index'])->middleware(['auth', 'verified'])->name('product.index');
-Route::get('/seller', [SellerController::class, 'index'])->middleware(SellerMiddleware::class)->name('seller.index');
-Route::get('/seller/products', [SellerController::class, 'sellerProducts'])->middleware(SellerMiddleware::class)->name('seller.sellerProducts');
-Route::post('/product/store', [SellerController::class, 'store'])->name('product.store');
-Route::get('verify', [DoubleAuthController::class, 'index'])->name('doubleAuth.index');
-Route::post('verify/verityCode', [DoubleAuthController::class, 'verityCode'])->name('doubleAuth.verityCode');
-Route::get('verify/resendCode', [DoubleAuthController::class, 'resendCode'])->name('doubleAuth.resendCode');
+Route::get('/verify', [DoubleAuthController::class, 'index'])->name('doubleAuth.index');
+Route::post('/verify/verityCode', [DoubleAuthController::class, 'verityCode'])->name('doubleAuth.verityCode');
+Route::get('/verify/resendCode', [DoubleAuthController::class, 'resendCode'])->name('doubleAuth.resendCode');
 
 
 Route::middleware('auth')->group(function () {
