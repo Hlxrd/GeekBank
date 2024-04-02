@@ -13,6 +13,8 @@ Route::get('/verify', [DoubleAuthController::class, 'index'])->name('doubleAuth.
 Route::post('/verify/verityCode', [DoubleAuthController::class, 'verityCode'])->name('doubleAuth.verityCode');
 Route::get('/verify/resendCode', [DoubleAuthController::class, 'resendCode'])->name('doubleAuth.resendCode');
 
+Route::get('/home/index',[HomeController::class , 'index'])->name('home.index');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
