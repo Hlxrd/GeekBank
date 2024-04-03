@@ -9,7 +9,8 @@
 
         <div class="w-full flex flex-row justify-center hover:bg-gray-900 hover:border-r-4 hover:py-2 transition-all">
             <span class="text-blue-500 px-4">icon</span>
-            <p class="text-white text-2xl mr-14">Transfer</p>
+
+            <a class="text-white text-2xl mr-14 no-underline" href="{{ route('transfer.index') }}">Transfer</a>
         </div>
 
         <div class="w-full flex flex-row justify-center hover:bg-gray-900 hover:border-r-4 hover:py-2 transition-all">

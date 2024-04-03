@@ -15,13 +15,15 @@
 <body class="">
     <div class="min-h-screen bg-gray-100">
         @include('layouts.navigation')
-        @include('layouts.sidebar')
         @include('layouts.flash')
-        
-        <!-- Page Content -->
-        <main class="p-[1rem]">
-            {{ $slot }}
-        </main>
+        <div class="flex">
+            @include('layouts.sidebar')
+
+            <!-- Page Content -->
+            <main class="p-[1rem] w-[80vw]">
+                {{ $slot }}
+            </main>
+        </div>
     </div>
 </body>
 
