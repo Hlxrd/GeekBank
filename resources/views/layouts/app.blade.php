@@ -17,13 +17,15 @@
         @include('layouts.navigation')
 
         @include('layouts.flash')
-
+        
+        <!-- Page Content -->
         <div class="flex">
-            @include('layouts.sidebar')
-            <main class="p-[2rem] w-[80vw]">
-                {{ $slot }}
-            </main>
+        @include('layouts.sidebar')            
+        <main class="p-[2rem] w-[80vw]">
+            {{ $slot }}
+        </main>
         </div>
+
     </div>
 </body>
 
