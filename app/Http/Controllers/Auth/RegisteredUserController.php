@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Card;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -31,7 +32,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'seller_or_buyer' => 'required',
+            'phone_number' => " required",
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -39,7 +40,7 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'seller_or_buyer' => $request->seller_or_buyer,
+            'phone_number' => $request->phone_number,
             'password' => Hash::make($request->password),
         ]);
 
@@ -47,6 +48,8 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('product.index', absolute: false));
+        $card = new Card();
+        $card->generateFirstCard();
+        return redirect(route('home.index', absolute: false));
     }
 }

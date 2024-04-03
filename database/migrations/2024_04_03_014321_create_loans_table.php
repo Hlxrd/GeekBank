@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cards', function (Blueprint $table) {
+        Schema::create('loans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->bigInteger('card_number')->unique();
-            $table->integer('cvc');
-            $table->bigInteger('rib')->unique();
-            $table->decimal('balance', 12, 2);
-            $table->dateTime('expiration_date');
-            $table->softDeletes();
+            $table->integer('amount');
+            $table->boolean('is_paid_off')->default(false);
             $table->timestamps();
         });
     }
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cards');
+        Schema::dropIfExists('loans');
     }
 };

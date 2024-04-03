@@ -16,28 +16,22 @@
                     required autofocus autocomplete="name" />
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
-
-            <!-- Email Address -->
+            <!-- Phone Number -->
             <div>
-                <x-input-label for="email" :value="__('Email')" />
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
-                    required autocomplete="username" />
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                <x-input-label for="phone" :value="__('Phone Number')" />
+                <x-text-input id="phone" class="block mt-1 w-full" type="number" name="phone_number"
+                    :value="old('phone_number')" required autofocus autocomplete="name" />
+                <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
         </div>
-
-        <!-- Seller or Buyer -->
+        <!-- Email Address -->
         <div class="mt-4">
-            <x-input-label for="seller_or_buyer" :value="__('seller or buyer')" />
-            <select class="text-white block mt-1 w-full bg-[#111827] rounded-md" name="seller_or_buyer"
-                id="seller_or_buyer">
-                <option value="" selected disabled></option>
-                <option value="seller">seller</option>
-                <option value="buyer">buyer</option>
-            </select>
-            <x-input-error :messages="$errors->get('seller_or_buyer')" class="mt-2" />
-
+            <x-input-label for="email" :value="__('Email')" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                required autocomplete="username" />
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
+
 
         <!-- Password -->
         <div class="mt-4">
