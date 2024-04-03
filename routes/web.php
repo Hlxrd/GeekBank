@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('verify', [DoubleAuthController::class, 'index'])->name('doubleAuth.index');
 Route::post('verify/verityCode', [DoubleAuthController::class, 'verityCode'])->name('doubleAuth.verityCode');
 Route::get('verify/resendCode', [DoubleAuthController::class, 'resendCode'])->name('doubleAuth.resendCode');
-Route::get('/crypto',[CryptoController::class,'index'])->name('crypto.crypto');
+// Route::get('/crypto',[CryptoController::class,'index'])->name('crypto.crypto');
 
 
 Route::middleware('auth')->group(function () {
