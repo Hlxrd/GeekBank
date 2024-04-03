@@ -17,7 +17,7 @@ class DoubleAuthMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         $user = User::where('id', auth()->user()->id)->first();
-        if ($user && $user->double_auth_validate) {
+        if ($user && $user->double_auth_validate == true) {
             return $next($request);
         }
         return redirect()->route('doubleAuth.index');
