@@ -18,7 +18,7 @@ class LoanController extends Controller
         $users = User::where('id', auth()->user()->id)->first();
         $cards = Card::where('id', auth()->user()->id);
         $loans = Loan::all();
-        return view("loanPage.loanPage", compact("users", "cards" , "loans"));
+        return view("loanPage.loanPage", compact("users", "cards", "loans"));
     }
 
     /**
@@ -27,16 +27,19 @@ class LoanController extends Controller
     public function takeLoan(Request $request)
     {
         //
-        
         $request->validate([
-            'user_id'=>'required',
             'amount' => 'required|numeric|min:1',
-            'remaining_amount' =>'required',
-            'is_paid_off' =>'required',
+            
+        ]);
+        $card = Card::where('id', auth()->user()->id);
+        dd($card);
+        dd($request);
+        Loan::create([
+            'amount' => $request->amount
+            
         ]);
 
 
-        $card = Card::where('id', auth()->user()->id)->first();
 
         $max_loan_amount = $card->balance * 2;
 
