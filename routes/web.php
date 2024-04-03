@@ -15,6 +15,8 @@ Route::post('/2fa/switchAuthOption', [DoubleAuthController::class, 'switchAuthOp
 Route::post('/2fa/verityCode', [DoubleAuthController::class, 'verityCode'])->name('doubleAuth.verityCode');
 Route::get('/2fa/resendCode', [DoubleAuthController::class, 'resendCode'])->name('doubleAuth.resendCode');
 
+Route::get("/history" , [HistoryController::class , 'index'])->name("history.index");
+
 Route::get('/home', [HomeController::class, 'index'])->middleware(['auth', 'verified', '2fa'])->name('home.index');
 
 Route::middleware('auth')->group(function () {
