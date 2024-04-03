@@ -15,12 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('seller_or_buyer');
-            $table->string('double_auth_permition')->default('false');
+            $table->integer('phone_number');
+            $table->string('password');
+            $table->boolean('double_auth_permition')->default(false);
+            $table->boolean('double_auth_validate')->default(true);
             $table->integer('double_auth_code')->nullable();
             $table->dateTime('double_auth_expires_at')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

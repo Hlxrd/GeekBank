@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Mail\DoubleAuthMail;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,15 +20,15 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('auth.login');
-        // $user = auth()->user();
-        // if ($user) {
-        //     session()->flush();
-        //     Auth::logout();
-        //     return view('auth.login');
-        // } else {
-        //     return view('auth.login');
-        // }
+        // return view('auth.login');
+        $user = auth()->user();
+        if ($user) {
+            session()->flush();
+            Auth::logout();
+            return view('auth.login');
+        } else {
+            return view('auth.login');
+        }
     }
 
     /**
@@ -38,15 +39,16 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-        /** @var User $user */
-        $user = auth()->user();
+        
+        $user = User::where('id', auth()->user()->id)->first();
 
-        if ($user->double_auth_permition == 'true') {
+        if ($user->double_auth_permition == true) {
             $user->generateTwoFactorCode();
             Mail::to($user->email)->send(new DoubleAuthMail($user->double_auth_code));
             return redirect()->route('doubleAuth.index');
         } else {
-            return redirect()->intended(route('product.index', absolute: false))->with('success', 'Connected successfully! '  . $user->name . ' Welcome!');}
+            return redirect()->intended(route('home.index', absolute: false))->with('success', 'Connected successfully! '  . $user->name . ' Welcome!');
+        }
     }
 
     /**
@@ -54,6 +56,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        $user = User::where('id', auth()->user()->id)->first();
+
+        $user->double_auth_validate = false;
+        $user->save();
+        
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();

@@ -3,13 +3,16 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -19,9 +22,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone_number',
         'password',
-        'seller_or_buyer',
         'double_auth_permition',
+        'double_auth_validate',
         'double_auth_code',
         'double_auth_expires_at',
     ];
@@ -49,10 +53,25 @@ class User extends Authenticatable
         ];
     }
 
-    public function product()
+    public function cards()
     {
-        return $this->belongsTo(Product::class);
+        return $this->hasMany(Card::class);
     }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    public function investments()
+    {
+        return $this->hasMany(Investment::class);
+    }
+    public function loans()
+    {
+        return $this->hasMany(Loan::class);
+    }
+
 
     public function generateTwoFactorCode()
     {
