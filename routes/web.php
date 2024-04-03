@@ -9,12 +9,12 @@ use App\Http\Middleware\SellerMiddleware;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/verify', [DoubleAuthController::class, 'index'])->name('doubleAuth.index');
-Route::post('/verify/verityCode', [DoubleAuthController::class, 'verityCode'])->name('doubleAuth.verityCode');
-Route::get('/verify/resendCode', [DoubleAuthController::class, 'resendCode'])->name('doubleAuth.resendCode');
+Route::get('/2fa', [DoubleAuthController::class, 'index'])->name('doubleAuth.index');
+Route::post('/2fa/switchAuthOption', [DoubleAuthController::class, 'switchAuthOption'])->name('doubleAuth.switchAuthOption');
+Route::post('/2fa/verityCode', [DoubleAuthController::class, 'verityCode'])->name('doubleAuth.verityCode');
+Route::get('/2fa/resendCode', [DoubleAuthController::class, 'resendCode'])->name('doubleAuth.resendCode');
 
-Route::get('/home/index',[HomeController::class , 'index'])->name('home.index');
-
+Route::get('/home', [HomeController::class, 'index'])->middleware(['auth', 'verified', '2fa'])->name('home.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

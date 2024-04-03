@@ -50,23 +50,6 @@
             @endif
         </div>
 
-        <div>
-            <x-input-label for="double_auth" :value="__('authentication type')" />
-            <div class="flex gap-4">
-                <div class="">
-                    <label class="text-white" for="double_auth">double_auth</label>
-                    <input @checked($user->double_auth_permition == 'true') type="radio" id="double_auth" name="double_auth_permition"
-                        class="mt-1 block rounded-md" value="true">
-                </div>
-
-                <div>
-                    <label class="text-white" for="normal_auth">normal_auth</label>
-                    <input @checked($user->double_auth_permition == 'false') type="radio" id="normal_auth" name="double_auth_permition"
-                        class="mt-1 block rounded-md" value="false">
-                </div>
-            </div>
-            <x-input-error class="mt-2" :messages="$errors->get('double_auth')" />
-        </div>
 
         <div class="flex items-center gap-4">
             <button class="btn btn-secondary">save</button>
