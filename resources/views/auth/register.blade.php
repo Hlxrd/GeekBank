@@ -3,7 +3,7 @@
         @csrf
 
         <div>
-            <h1 class="text-white font-bold">Sign Up</h1>
+            <h1 class="text-white font-bold ">Sign Up</h1>
             <p class="text-gray-400 ">It's quick and easy.</p>
 
         </div>

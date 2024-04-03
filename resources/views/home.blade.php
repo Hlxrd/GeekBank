@@ -17,5 +17,4 @@
                 href="{{ route('register') }}">register</a></button>
     </div>
 </body>
-
 </html>

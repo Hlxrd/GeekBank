@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DoubleAuthController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -16,6 +17,8 @@ Route::post('/product/store', [SellerController::class, 'store'])->name('product
 Route::get('verify', [DoubleAuthController::class, 'index'])->name('doubleAuth.index');
 Route::post('verify/verityCode', [DoubleAuthController::class, 'verityCode'])->name('doubleAuth.verityCode');
 Route::get('verify/resendCode', [DoubleAuthController::class, 'resendCode'])->name('doubleAuth.resendCode');
+
+Route::get("/history" , [HistoryController::class , 'index'])->name("history.index");
 
 
 Route::middleware('auth')->group(function () {
