@@ -3,6 +3,7 @@
 use App\Http\Controllers\DoubleAuthController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoanController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellerController;
@@ -15,7 +16,9 @@ Route::post('/2fa/switchAuthOption', [DoubleAuthController::class, 'switchAuthOp
 Route::post('/2fa/verityCode', [DoubleAuthController::class, 'verityCode'])->name('doubleAuth.verityCode');
 Route::get('/2fa/resendCode', [DoubleAuthController::class, 'resendCode'])->name('doubleAuth.resendCode');
 
-Route::get("/history" , [HistoryController::class , 'index'])->name("history.index");
+Route::get("/home/history" , [HistoryController::class , 'index'])->name("history.index");
+Route::get("/home/loan" , [LoanController::class , "index"])->name("loan.index");
+Route::post('/take-loan', [LoanController::class, 'takeLoan'])->name('takeLoan');
 
 Route::get('/home', [HomeController::class, 'index'])->middleware(['auth', 'verified', '2fa'])->name('home.index');
 
