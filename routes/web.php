@@ -3,6 +3,7 @@
 use App\Http\Controllers\BillsController;
 use App\Http\Controllers\DoubleAuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvestmentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellerController;
@@ -11,8 +12,8 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/pay',[BillsController::class , 'pay'])->name('home.pay');
-// Route::get('/investment',::class , 'invest'])->name('home.invest');
+Route::get('/pay',[BillsController::class , 'pay'])->name('home.pay')->middleware(['auth', 'verified', '2fa'])->name('home.index');
+Route::get('/investment',[InvestmentController::class , 'invest'])->name('home.invest')->middleware(['auth', 'verified', '2fa'])->name('home.index');
 
 Route::get('/2fa', [DoubleAuthController::class, 'index'])->name('doubleAuth.index');
 Route::post('/2fa/switchAuthOption', [DoubleAuthController::class, 'switchAuthOption'])->name('doubleAuth.switchAuthOption');
