@@ -21,7 +21,7 @@
         <!-- Page Content -->
         <div class="flex">
         @include('layouts.sidebar')            
-        <main class="p-[2rem] w-[80vw]">
+        <main class="p-[2rem] bg-gray-900 w-full">
             {{ $slot }}
         </main>
         </div>
