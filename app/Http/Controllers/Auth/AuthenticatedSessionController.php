@@ -46,8 +46,7 @@ class AuthenticatedSessionController extends Controller
             Mail::to($user->email)->send(new DoubleAuthMail($user->double_auth_code));
             return redirect()->route('doubleAuth.index');
         } else {
-            return redirect()->intended(route('product.index', absolute: false))->with('success', 'Connected successfully! '  . $user->name . ' Welcome!');
-        }
+            return redirect()->intended(route('product.index', absolute: false))->with('success', 'Connected successfully! '  . $user->name . ' Welcome!');}
     }
 
     /**
