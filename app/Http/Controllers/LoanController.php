@@ -24,35 +24,60 @@ class LoanController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+    // public function takeLoan(Request $request)
+    // {
+    //     //
+    //     $request->validate([
+    //         'amount' => 'required|numeric|min:1',
+
+    //     ]);
+    //     $card = Card::where('id', auth()->user()->id);
+    //     dd($card);
+    //     dd($request);
+    //     Loan::create([
+    //         'amount' => $request->amount
+
+    //     ]);
+
+
+
+    //     $max_loan_amount = $card->balance * 2;
+
+    //     if ($request->loan_amount > $max_loan_amount) {
+    //         return redirect()->back()->with('error', 'Loan amount exceeds 200% of your current balance.');
+    //     }
+
+    //     $card->balance += $request->loan_amount;
+    //     $card->save();
+
+    //     return redirect()->back()->with('success', 'Loan successfully added to your card balance.');
+    // }
     public function takeLoan(Request $request)
     {
-        //
         $request->validate([
             'amount' => 'required|numeric|min:1',
-            
-        ]);
-        $card = Card::where('id', auth()->user()->id);
-        dd($card);
-        dd($request);
-        Loan::create([
-            'amount' => $request->amount
-            
+            'card_id' => 'required|exists:cards,id',
         ]);
 
-
-
+        $card = Card::findOrFail($request->card_id);
         $max_loan_amount = $card->balance * 2;
 
-        if ($request->loan_amount > $max_loan_amount) {
+        if ($request->amount > $max_loan_amount) {
             return redirect()->back()->with('error', 'Loan amount exceeds 200% of your current balance.');
         }
 
-        $card->balance += $request->loan_amount;
-        $card->save();
+        if ($card->user->loans()->where('is_paid_off', false)->exists()) {
+            return redirect()->back()->with('error', 'You have an active loan. Pay off the existing loan to request a new one.');
+        }
 
-        return redirect()->back()->with('success', 'Loan successfully added to your card balance.');
+        $loan = new Loan();
+        $loan->user_id = auth()->user()->id;
+        $loan->amount = $request->amount;
+        $loan->card_id = $card->id;
+        $loan->save();
+
+        return redirect()->back()->with('success', 'Loan successfully requested.');
     }
-
     /**
      * Store a newly created resource in storage.
      */
