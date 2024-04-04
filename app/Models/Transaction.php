@@ -15,6 +15,7 @@ class Transaction extends Model
         'transaction_type',
         'amount',
         'recipient_rib',
+        'recipient_profile_name',
         'service_name',
     ];
 
