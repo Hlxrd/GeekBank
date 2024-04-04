@@ -18,6 +18,8 @@
 
         @include('layouts.flash')
         {{-- <div class="flex">
+        @include('layouts.flash')
+        <div class="flex">
             @include('layouts.sidebar')
 
             <!-- Page Content -->
@@ -34,6 +36,7 @@
             </main>
         </div>
 
+        </div>
     </div>
 </body>
 

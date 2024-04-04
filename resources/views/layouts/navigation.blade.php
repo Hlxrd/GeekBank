@@ -1,4 +1,4 @@
-<nav class="bg-gray-900 h-[13vh] flex items-center">
+<nav class="bg-gray-900 h-[13vh] flex items-center ">
 
     <div class="px-14 flex w-full flex-row justify-between">
         <h2 class="text-white text-4xl">Geek<span class="text-yellow-500">Bank.</span></h2>

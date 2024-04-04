@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/pay',[BillsController::class , 'pay'])->name('home.pay')->middleware(['auth', 'verified', '2fa'])->name('home.index');
-Route::get('/investment',[InvestmentController::class , 'invest'])->name('home.invest')->middleware(['auth', 'verified', '2fa'])->name('home.index');
+Route::get('/home/pay',[BillsController::class , 'pay'])->name('home.pay')->middleware(['auth', 'verified', '2fa']);
+Route::get('/home/investment',[InvestmentController::class , 'invest'])->name('home.invest')->middleware(['auth', 'verified', '2fa']);
 
 // ? double auth routes
 Route::get('/2fa', [DoubleAuthController::class, 'index'])->name('doubleAuth.index');

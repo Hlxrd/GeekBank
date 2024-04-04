@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('investments', function (Blueprint $table) {
             $table->id();
+            $table->string("nameInvest");
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();;
             $table->foreignId('investment_option_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();;
             $table->integer('amount');
