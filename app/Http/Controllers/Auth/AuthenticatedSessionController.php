@@ -20,15 +20,15 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        // return view('auth.login');
-        $user = auth()->user();
-        if ($user) {
-            session()->flush();
-            Auth::logout();
-            return view('auth.login');
-        } else {
-            return view('auth.login');
-        }
+        return view('auth.login');
+        // $user = auth()->user();
+        // if ($user) {
+        //     session()->flush();
+        //     Auth::logout();
+        //     return view('auth.login');
+        // } else {
+        //     return view('auth.login');
+        // }
     }
 
     /**

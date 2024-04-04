@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('transaction_type');
             $table->decimal('amount', 12, 2);
             $table->bigInteger('recipient_rib');
-            $table->string('service_name ');
+            $table->string('recipient_profile_name');
+            $table->string('service_name');
             $table->timestamps();
         });
     }
