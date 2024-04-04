@@ -41,4 +41,15 @@ class Card extends Model
         $this->expiration_date = now()->addYear(10)->format('m-y');
         $this->save();
     }
+    public function generateSecondCard()
+    {
+        $currentDate = now()->hourOfDay() .  now()->minuteOfHour() + 1 . now()->secondOfMinute();
+        $this->user_id = auth()->user()->id;
+        $this->card_number = rand(1000000000000000, 9999999999999999);
+        $this->cvc = rand(100, 999);
+        $this->rib = rand(100000000000000000, 999999999999999999);
+        $this->balance = 4500;
+        $this->expiration_date = now()->addYear(10)->format('m-y');
+        $this->save();
+    }
 }

@@ -1,13 +1,19 @@
 <?php
 
+use App\Models\Card;
+use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Schedule;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote')->hourly();
+// Artisan::command('inspire', function () {
+//     $this->comment(Inspiring::quote());
+// })->purpose('Display an inspiring quote')->hourly();
 
-Artisan::command('test', function () {
-    $date = now()->format('m-Y');
-    dd($date);
-});
+// Artisan::command('test', function () {
+//     $date = now()->format('m-Y');
+//     dd($date);
+// });

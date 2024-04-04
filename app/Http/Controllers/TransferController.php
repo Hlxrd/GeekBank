@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Card;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,7 @@ class TransferController extends Controller
         request()->validate([
             'source_card' => 'required',
             'receive_card' => 'required',
-            'amount' => 'required',
+            'amount' => 'required|numeric',
         ]);
 
         $source_card = Card::all()->where('id', '==', $request->source_card)->first();
@@ -34,6 +35,15 @@ class TransferController extends Controller
             $receive_card->balance += $amount;
             $source_card->save();
             $receive_card->save();
+            Transaction::create([
+                "user_id" => auth()->user()->id,
+                'card_id' => $source_card->id,
+                'transaction_type' => 'transfer',
+                'amount' => $amount,
+                'recipient_rib' => $receive_card->rib,
+                'recipient_profile_name' => $receive_card->user->name,
+                'service_name' => 'none'
+            ]);
         } else {
             return redirect()->route('transfer.index')->withErrors([
                 'errorMessage' => 'you don t have this amount on your card'
