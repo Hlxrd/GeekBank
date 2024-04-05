@@ -22,6 +22,11 @@ Route::get('/home/bill', [BillsController::class, 'index'])->name('bill.index');
 Route::post('/home/bill/pay', [BillsController::class, 'pay'])->name('bill.pay');
 
 Route::get('/home/investment', [InvestmentController::class, 'invest'])->name('home.invest');
+// * investment routes
+Route::get('/home/pay',[BillsController::class , 'pay'])->name('home.pay')->middleware(['auth', 'verified', '2fa']);
+Route::get('/home/investment',[InvestmentController::class , 'index'])->name('invest.index');
+Route::post('/home/storeInvest',[InvestmentController::class , 'store'])->name('invest.store');
+Route::delete("/home/delete/{investment}",[InvestmentController::class ,"destroy"])->name("invest.destroy");
 
 // ? double auth routes
 Route::get('/2fa', [DoubleAuthController::class, 'index'])->name('doubleAuth.index');

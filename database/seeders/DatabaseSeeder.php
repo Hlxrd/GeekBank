@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminSeeder::class,
             BillsSeeder::class,
+            Investment_optionSeeder::class,
+
         ]);
         // User::factory()->create([
         //     'name' => 'Test User',
