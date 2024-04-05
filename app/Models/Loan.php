@@ -12,7 +12,6 @@ class Loan extends Model
     protected $fillable = [
         'user_id',
         'amount',
-        // 
         'is_paid_off',
     ];
 

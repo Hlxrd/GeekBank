@@ -29,6 +29,11 @@ Route::post('/home/myCard/addCard', [CardController::class, 'store'])->name('myC
 Route::delete('/home/myCard/delete/{card}', [CardController::class, 'destroy'])->name('myCard.destroy');
 Route::post('/home/myCard/distributeBalance', [CardController::class, 'distributeBalance'])->name('myCard.distributeBalance');
 
+// ! loan routes 
+Route::get("/home/loan" , [LoanController::class , "index"])->name("loan.index");
+Route::post("/home/loan/takeLoan" , [LoanController::class , "takeLoan"])->name("loan.takeLoan");
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

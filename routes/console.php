@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Card;
+use App\Models\Loan;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Schedule;
@@ -17,3 +18,17 @@ use Illuminate\Support\Facades\DB;
 //     $date = now()->format('m-Y');
 //     dd($date);
 // });
+
+Schedule::call(function () {
+    $loans = Loan::where('is_paid_off' , false)->get();
+    foreach ($loans as $loan) {
+        if (!$loan->is_paid_off && $loan->amount > 0) {
+            $loan->amount = $loan->amount * 0.1; 
+            $loan->save();
+            
+        } else {
+            $loan->is_paid_off = true ; 
+            $loan->save();
+        }
+    }
+})->everyTwoSeconds();

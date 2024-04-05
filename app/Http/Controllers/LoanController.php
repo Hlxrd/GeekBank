@@ -6,6 +6,7 @@ use App\Models\Card;
 use App\Models\Loan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Locale;
 
 class LoanController extends Controller
 {
@@ -24,60 +25,54 @@ class LoanController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    // public function takeLoan(Request $request)
-    // {
-    //     //
-    //     $request->validate([
-    //         'amount' => 'required|numeric|min:1',
-
-    //     ]);
-    //     $card = Card::where('id', auth()->user()->id);
-    //     dd($card);
-    //     dd($request);
-    //     Loan::create([
-    //         'amount' => $request->amount
-
-    //     ]);
-
-
-
-    //     $max_loan_amount = $card->balance * 2;
-
-    //     if ($request->loan_amount > $max_loan_amount) {
-    //         return redirect()->back()->with('error', 'Loan amount exceeds 200% of your current balance.');
-    //     }
-
-    //     $card->balance += $request->loan_amount;
-    //     $card->save();
-
-    //     return redirect()->back()->with('success', 'Loan successfully added to your card balance.');
-    // }
     public function takeLoan(Request $request)
     {
+        //
         $request->validate([
             'amount' => 'required|numeric|min:1',
-            'card_id' => 'required|exists:cards,id',
+            'user_card' => 'required'
         ]);
 
-        $card = Card::findOrFail($request->card_id);
-        $max_loan_amount = $card->balance * 2;
 
-        if ($request->amount > $max_loan_amount) {
-            return redirect()->back()->with('error', 'Loan amount exceeds 200% of your current balance.');
+        $cardSelecte = Card::where('id', $request->user_card)->first();
+
+        $amount = (int)$request->amount;
+
+        $userLoans = Loan::all();
+
+        if ($amount <= $cardSelecte->balance * 2) {
+            Loan::create([
+                'user_id' => auth()->user()->id,
+                'amount' => $amount,
+                'is_paid_off' => false,
+            ]);
+
+        }elseif ($userLoans->amount != 0) {
+            dd('ta tkhalles');
         }
+        // $card = Card::where('id', auth()->user()->id);
+        // $user = auth()->user();
 
-        if ($card->user->loans()->where('is_paid_off', false)->exists()) {
-            return redirect()->back()->with('error', 'You have an active loan. Pay off the existing loan to request a new one.');
-        }
+        // $loan = new Loan();
+        // $loan->user_id = $user->id; // Associate the loan with the current user
+        // $loan->amount = $request->amount;
+        // $loan->save();
 
-        $loan = new Loan();
-        $loan->user_id = auth()->user()->id;
-        $loan->amount = $request->amount;
-        $loan->card_id = $card->id;
-        $loan->save();
 
-        return redirect()->back()->with('success', 'Loan successfully requested.');
+
+
+        // $max_loan_amount = $card->balance * 2;
+
+        // if ($request->loan_amount > $max_loan_amount) {
+        //     return redirect()->back()->with('error', 'Loan amount exceeds 200% of your current balance.');
+        // }
+
+        // $card->balance += $request->loan_amount;
+        // $card->save();
+
+        return redirect()->back()->with('success', 'Loan successfully added to your card balance.');
     }
+
     /**
      * Store a newly created resource in storage.
      */
