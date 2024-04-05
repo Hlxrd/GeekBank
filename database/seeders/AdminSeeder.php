@@ -22,6 +22,8 @@ class AdminSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => Hash::make('admin'),
             'phone_number' => 123456,
+            'city' => 'city',
+            'gender' => 'male',
             // 'double_auth_permition' => 'chi7aja',
             // 'double_auth_code' => 'chi7aja',
             // 'double_auth_expires_at' => 'chi7aja',

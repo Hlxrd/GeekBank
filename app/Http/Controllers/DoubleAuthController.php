@@ -26,6 +26,8 @@ class DoubleAuthController extends Controller
                 $user->generateTwoFactorCode();
                 Mail::to($user->email)->send(new DoubleAuthMail($user->double_auth_code));
                 return redirect()->route('doubleAuth.index');
+            } else {
+                return redirect()->route('home.index');
             }
         }
     }

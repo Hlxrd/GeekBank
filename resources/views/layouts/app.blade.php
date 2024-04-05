@@ -17,13 +17,13 @@
 </head>
 
 <body class="">
-    <div class="min-h-screen bg-gray-100">
+    <div class=" bg-gray-100">
         @include('layouts.navigation')
 
         @include('layouts.flash')
         
         <!-- Page Content -->
-        <div class="flex">
+        <div class="flex ">
         @include('layouts.sidebar')            
         <main class="p-[2rem] bg-gray-900 w-full">
             {{ $slot }}

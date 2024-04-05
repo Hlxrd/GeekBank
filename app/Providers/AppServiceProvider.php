@@ -20,5 +20,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        $myVariable = 'Hello, World!';
+        $this->app->singleton('myVariable', function () use ($myVariable) {
+            return $myVariable;
+        });
     }
 }

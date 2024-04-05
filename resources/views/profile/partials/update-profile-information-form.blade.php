@@ -50,6 +50,33 @@
             @endif
         </div>
 
+        <!-- Phone Number -->
+        <div>
+            <x-input-label for="phone" :value="__('Phone Number')" />
+            <x-text-input id="phone" class="block mt-1 w-full" type="number" name="phone_number" :value="old('phone_number', $user->phone_number)"
+                required autofocus autocomplete="name" />
+            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+        </div>
+
+        <!--  gender -->
+        <div class="mt-4">
+            <x-input-label for="gender" :value="__('gender')" />
+            <select class="block mt-1 w-full bg-[#111827] rounded-md text-white" name="gender" id="gender">
+                <option value="" disabled selected>select gender</option>
+                <option @selected($user->gender == 'male') value="male">male</option>
+                <option @selected($user->gender == 'female') value="female">female</option>
+            </select>
+            <x-input-error :messages="$errors->get('gender')" class="mt-2" />
+        </div>
+
+        <!-- city Address -->
+        <div class="mt-4">
+            <x-input-label for="city" :value="__('city')" />
+            <x-text-input id="city" class="block mt-1 w-full" type="text" name="city" :value="old('city', $user->city)"
+                required autocomplete="username" />
+            <x-input-error :messages="$errors->get('city')" class="mt-2" />
+        </div>
+
 
         <div class="flex items-center gap-4">
             <button class="btn btn-secondary">save</button>

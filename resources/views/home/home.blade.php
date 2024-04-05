@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="w-full h-full  rounded-xl">
+    <div class="w-full h-full   rounded-xl">
 
         {{--  --}}
         <div class="w-full  flex flex-row-reverse justify-around">

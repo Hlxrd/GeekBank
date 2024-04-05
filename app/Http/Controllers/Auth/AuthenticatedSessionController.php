@@ -20,15 +20,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        // return view('auth.login');
-        $user = auth()->user();
-        if ($user) {
-            session()->flush();
-            Auth::logout();
-            return view('auth.login');
-        } else {
-            return view('auth.login');
-        }
+        return view('auth.login');
     }
 
     /**
@@ -39,10 +31,10 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-        
+
         $user = User::where('id', auth()->user()->id)->first();
 
-        if ($user->double_auth_permition == true) {
+        if ($user && $user->double_auth_permition == true) {
             $user->generateTwoFactorCode();
             Mail::to($user->email)->send(new DoubleAuthMail($user->double_auth_code));
             return redirect()->route('doubleAuth.index');
@@ -56,11 +48,6 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $user = User::where('id', auth()->user()->id)->first();
-
-        $user->double_auth_validate = false;
-        $user->save();
-        
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();

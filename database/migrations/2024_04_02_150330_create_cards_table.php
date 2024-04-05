@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigInteger('card_number')->unique();
             $table->integer('cvc');
             $table->bigInteger('rib')->unique();
-            $table->decimal('balance', 12, 2);
+            $table->float('balance', 12, 2);
             $table->dateTime('expiration_date');
             $table->softDeletes();
             $table->timestamps();
