@@ -73,6 +73,7 @@ class CardController extends Controller
                 $receive_card->save();
                 Transaction::create([
                     "user_id" => auth()->user()->id,
+                    "card_id" => $source_card->id,
                     'from_card' => $source_card->card_number,
                     'to_card' => $receive_card->card_number,
                     'transaction_type' => 'switch money',

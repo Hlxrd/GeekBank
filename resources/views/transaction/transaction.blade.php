@@ -2,30 +2,29 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">user</th>
+                <th scope="col">card</th>
+                <th scope="col">transaction type</th>
+                <th scope="col">amount</th>
+                <th scope="col">recipient rib</th>
+                <th scope="col">service name</th>
+                <th scope="col">from card</th>
+                <th scope="col">to card</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-            </tr>
+            @foreach ($transactions as $transaction)
+                <tr class="mt-8">
+                    <th scope="row">{{ $transaction->user->name }}</th>
+                    <th scope="row">{{ $transaction->card->card_number }}</th>
+                    <td>{{ $transaction->transaction_type }}</td>
+                    <td>{{ $transaction->amount }}</td>
+                    <td>{{ $transaction->recipient_rib }}</td>
+                    <td>{{ $transaction->service_name }}</td>
+                    <td>{{ $transaction->from_card }}</td>
+                    <td>{{ $transaction->to_card }}</td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </x-app-layout>

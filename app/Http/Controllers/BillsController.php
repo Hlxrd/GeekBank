@@ -25,7 +25,6 @@ class BillsController extends Controller
             'service_name' => 'required',
         ]);
 
-        dd($request);
 
         $card_selected = Card::where('id', $request->card_selected)->first();
 

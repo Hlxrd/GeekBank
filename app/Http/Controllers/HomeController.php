@@ -13,6 +13,7 @@ class HomeController extends Controller
     {
         
         $user = User::where('id',auth()->user()->id)->first();
+        
         return view('home.home', compact('user'));
     }
     

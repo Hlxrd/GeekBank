@@ -12,6 +12,7 @@ use App\Http\Controllers\LoanController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellerController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TransferController;
 use App\Http\Middleware\SellerMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,9 @@ Route::get('/home/pay',[BillsController::class , 'pay'])->name('home.pay')->midd
 Route::get('/home/investment',[InvestmentController::class , 'index'])->name('invest.index');
 Route::post('/home/storeInvest',[InvestmentController::class , 'store'])->name('invest.store');
 Route::delete("/home/delete/{investment}",[InvestmentController::class ,"destroy"])->name("invest.destroy");
+
+// ! 
+Route::get('/home/transaction', [TransactionController::class, 'index'])->name('transaction.index');
 
 // ? double auth routes
 Route::get('/2fa', [DoubleAuthController::class, 'index'])->name('doubleAuth.index');
