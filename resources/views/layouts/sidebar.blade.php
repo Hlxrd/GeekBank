@@ -8,7 +8,7 @@
         
         <div class="w-full cursor-pointer flex flex-row justify-center hover:bg-primary-color py-2 hover:border-r-4 transition-all">
             <span class="text-secondary-color px-4">icon</span>
-            <p class="text-white text-xl mr-14">Crypto</p>
+            <a href="{{ route('crypto') }}" class="text-white text-xl mr-14 no-underline">Crypto</a>
         </div>
 
         <div class="w-full cursor-pointer flex flex-row justify-center hover:bg-primary-color py-2 hover:border-r-4 transition-all">
@@ -23,7 +23,7 @@
 
         <div class="w-full cursor-pointer flex flex-row justify-center hover:bg-primary-color py-2 hover:border-r-4 transition-all">
             <span class="text-secondary-color px-4">icon</span>
-            <a href="{{ route('home.invest') }}" class="text-white text-xl mr-5 no-underline">Investement</a>
+            <a href="{{ route('invest.index') }}" class="text-white text-xl mr-5 no-underline">Investement</a>
         </div>
 
         <div class="w-full cursor-pointer flex flex-row justify-center hover:bg-primary-color py-2 hover:border-r-4 transition-all">
