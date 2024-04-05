@@ -25,7 +25,7 @@
         <!-- Page Content -->
         <div class="flex ">
         @include('layouts.sidebar')            
-        <main class="p-[2rem] bg-gray-900 w-full">
+        <main class="p-[2rem] bg-gray-900 w-full position-relative">
             {{ $slot }}
         </main>
         </div>

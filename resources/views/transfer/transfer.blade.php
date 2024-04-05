@@ -31,7 +31,7 @@
             </div>
         @else
             <div>
-                <h5>no profile to display</h5>
+                <p class="text-secondary-color">*no profile to display</p>
             </div>
         @endif
         <div class="flex flex-col">

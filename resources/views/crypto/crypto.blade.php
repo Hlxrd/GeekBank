@@ -4,23 +4,23 @@
         <div class="w-[100%] h-screen justify-center">
 
             <h1>
-                <div class="alert alert-info">
-                    Your balance: {{ $card->balance }} dh
+                <div class=" text-white py-4">
+                    Current balance: <span class="text-secondary-color">{{ $card->balance }} DH</span>  
                 </div>
-                <div class="alert alert-info">
-                    Your Crypto balance:
-                </div>
-                <h2>Crypto Wallet</h2>
+            <div class="bg-gray-800 p-8 rounded-xl text-white mt-4 w-[40vw]">
+                                    <h2>Crypto Wallet</h2>
                 <ul>
                     @foreach ($cryptocurrencies as $cryptocurrency)
-                        <li>{{ $cryptocurrency->coin_name }}: {{ $cryptocurrency->amount }}</li>
+                        <li class="text-secondary-color">{{ $cryptocurrency->coin_name }}: {{ $cryptocurrency->amount }}</li>
                     @endforeach
                 </ul>
+            </div>
+
             </h1>
             <div id="crypto-data" class="flex flex-col justify-center items-center">
-                <h1 class="font-bold text-4xl py-4 mb-9 text-sky-400">Market Overview</h1>
-                <table class="table text-center w-[100%] border rounded-2xl">
-                    <thead class=" bg-[#f0f0f0] ">
+                <h1 class="font-thin text-4xl py-4 mb-9 text-secondary-color">Market Overview</h1>
+                <table class=" bg-gray-700 text-white text-center w-[100%] rounded-lg">
+                    <thead class=" bg-secondary-color ">
                         <tr>
                             <th scope="col">id</th>
                             <th scope="col">symbol</th>
@@ -47,7 +47,7 @@
                                     <p>{{ $crypto['name'] }} <span
                                             class="text-[#7c8698]">({{ $crypto['symbol'] }})</span></p>
                                 </td>
-                                <td class="py-4  font-bold  ">
+                                <td class="py-4  font-bold text-secondary-color  ">
                                     {{ number_format($crypto['quote']['USD']['price'], 2) }} $</td>
                                 <td class=" py-4 font-bold items-center">
                                     {{ $crypto['quote']['USD']['percent_change_24h'] }}</td>
