@@ -21,7 +21,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
-        // $users = User::where('id',auth()->user()->id)->first();
-        // view()->share("users" , $users);
+        $myVariable = 'Hello, World!';
+        $this->app->singleton('myVariable', function () use ($myVariable) {
+            return $myVariable;
+        });
     }
 }

@@ -10,6 +10,7 @@ class Investment extends Model
     use HasFactory;
 
     protected $fillable = [
+        'nameInvest',
         'user_id',
         'investment_option_id',
         'amount',

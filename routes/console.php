@@ -10,9 +10,10 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-// Artisan::command('inspire', function () {
-//     $this->comment(Inspiring::quote());
-// })->purpose('Display an inspiring quote')->hourly();
+Artisan::command('inspire', function () {
+    dump(Auth::user());
+})->purpose('Display an inspiring quote')->hourly();
+
 
 // Artisan::command('test', function () {
 //     $date = now()->format('m-Y');

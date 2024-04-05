@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\BillsController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\DoubleAuthController;
 use App\Http\Controllers\HistoryController;
+
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvestmentController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -11,6 +14,13 @@ use App\Http\Controllers\SellerController;
 use App\Http\Controllers\TransferController;
 use App\Http\Middleware\SellerMiddleware;
 use Illuminate\Support\Facades\Route;
+
+
+// TODO bill routes
+Route::get('/home/bill', [BillsController::class, 'index'])->name('bill.index');
+Route::post('/home/bill/pay', [BillsController::class, 'pay'])->name('bill.pay');
+
+Route::get('/home/investment', [InvestmentController::class, 'invest'])->name('home.invest');
 
 // ? double auth routes
 Route::get('/2fa', [DoubleAuthController::class, 'index'])->name('doubleAuth.index');

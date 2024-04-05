@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Jobs\ProcessCard;
 use App\Models\Card;
+use App\Models\Transaction;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Sleep;
 
 class CardController extends Controller
@@ -27,6 +29,7 @@ class CardController extends Controller
         $userCards = Card::where('user_id', auth()->user()->id)->get();
 
         if (count($userCards) < 2) {
+
             Card::create([
                 'user_id' => auth()->user()->id,
                 'card_number' => rand(1000000000000000, 9999999999999999),
@@ -35,10 +38,11 @@ class CardController extends Controller
                 'balance' => 0,
                 'expiration_date' => now()->addYear(10)->format('m-y'),
             ]);
-            return back();
+
+            return back()->with('success', 'The card has been successfully added.');
         } else {
-            return redirect()->route('myCard.index')->withErrors([
-                'errorMessage' => 'you all ready have two cards'
+            return redirect()->route('myCard.index')->with([
+                'error' => 'You ve reached the maximum card limit of two.'
             ]);
         }
     }
@@ -67,12 +71,19 @@ class CardController extends Controller
                 $source_card->balance  -= $amount;
                 $source_card->save();
                 $receive_card->save();
-                return back()->with('success', 'the amount of ' . $amount . 'has ben distribute to the card with number' . $receive_card->card_number);
+                Transaction::create([
+                    "user_id" => auth()->user()->id,
+                    'from_card' => $source_card->card_number,
+                    'to_card' => $receive_card->card_number,
+                    'transaction_type' => 'switch money',
+                    'amount' => $amount,
+                ]);
+                return back()->with('success', "The amount of $" . $amount . " has been distributed to the card with the following number:" . $receive_card->card_number);
             } else {
-                return back()->with('error', 'ditrubution failde you don t have this '. $amount .'on your card')->withErrors('errorMessage', 'you dont have the amount of ' . $amount . 'on your card');
+                return back()->with('error', "Distribution failed. You don't have $" . $amount . " on your card.")->withErrors('errorMessage', "You don't have the amount of $" . $amount . " on your card.");
             }
         } else {
-            return back()->with('error', 'distributinon failde you can t distribut to the same card');
+            return back()->with('error', "Distribution failed. You can't distribute to the same card.");
         }
     }
 }

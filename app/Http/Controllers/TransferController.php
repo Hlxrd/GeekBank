@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Card;
 use App\Models\Transaction;
 use App\Models\User;
+use Dotenv\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class TransferController extends Controller
 {
@@ -20,6 +22,9 @@ class TransferController extends Controller
 
     public function handlTransfer(Request $request)
     {
+        if (!$request->receive_card) {
+            return back()->with('error', 'transfer failds');
+        }
         request()->validate([
             'source_card' => 'required',
             'receive_card' => 'required',
@@ -28,6 +33,7 @@ class TransferController extends Controller
 
         $source_card = Card::all()->where('id', '==', $request->source_card)->first();
         $receive_card = Card::all()->where('id', '==', $request->receive_card)->first();
+
         $amount = (int)$request->amount;
 
         if ($request->amount <= $source_card->balance) {
@@ -41,12 +47,10 @@ class TransferController extends Controller
                 'transaction_type' => 'transfer',
                 'amount' => $amount,
                 'recipient_rib' => $receive_card->rib,
-                'recipient_profile_name' => $receive_card->user->name,
-                'service_name' => 'none'
             ]);
         } else {
             return redirect()->route('transfer.index')->withErrors([
-                'errorMessage' => 'you don t have this amount on your card'
+                'errorMessage' => "You don't have this amount on your card."
             ])->onlyInput('amount');
         }
         return back();

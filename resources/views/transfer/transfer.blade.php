@@ -16,18 +16,24 @@
             @enderror
         </div>
 
-        <h4>select the rip of the profile that you want to send money to it</h4>
-        <div class="flex flex-col">
-            <select name="receive_card" id="">
-                <option value="" selected disabled>select the profile</option>
-                @foreach ($cards as $card)
-                    <option value="{{ $card->id }}">{{ $card->rib }} : {{ $card->user->name }}</option>
-                @endforeach
-            </select>
-            @error('receive_card')
-                <span class="text-red-500">{{ $message }} </span>
-            @enderror
-        </div>
+        <h2>select the profile:</h2>
+        @if (count($cards) > 0)
+            <div class="flex flex-col">
+                <select name="receive_card" id="">
+                    <option value="" selected disabled>select the profile</option>
+                    @foreach ($cards as $card)
+                        <option value="{{ $card->id }}">{{ $card->rib }} : {{ $card->user->name }}</option>
+                    @endforeach
+                </select>
+                @error('receive_card')
+                    <span class="text-red-500">{{ $message }} </span>
+                @enderror
+            </div>
+        @else
+            <div>
+                <h5>no profile to display</h5>
+            </div>
+        @endif
         <div class="flex flex-col">
             <label for="">amount :</label>
             <input type="number" name="amount" placeholder="amount">
