@@ -11,6 +11,6 @@ class Bills extends Model
     protected $fillable = [
         'title',
         'price',
-        'due_date',
+        'description',
     ];
 }

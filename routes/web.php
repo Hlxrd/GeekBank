@@ -13,9 +13,11 @@ use App\Http\Middleware\SellerMiddleware;
 use Illuminate\Support\Facades\Route;
 
 
+// TODO bill routes
+Route::get('/home/bill', [BillsController::class, 'index'])->name('bill.index');
+Route::post('/home/bill/pay', [BillsController::class, 'pay'])->name('bill.pay');
 
-Route::get('/home/pay',[BillsController::class , 'pay'])->name('home.pay')->middleware(['auth', 'verified', '2fa']);
-Route::get('/home/investment',[InvestmentController::class , 'invest'])->name('home.invest')->middleware(['auth', 'verified', '2fa']);
+Route::get('/home/investment', [InvestmentController::class, 'invest'])->name('home.invest');
 
 // ? double auth routes
 Route::get('/2fa', [DoubleAuthController::class, 'index'])->name('doubleAuth.index');

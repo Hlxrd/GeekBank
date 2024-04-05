@@ -17,8 +17,8 @@ class BillsSeeder extends Seeder
         for ($i = 0; $i < 20; $i++) {
             Bills::insert([
                 'title' => 'Bill ' . ($i + 1),
-                'price' => mt_rand(100, 10000) / 100, 
-                'due_date' => now()->addDays(rand(1, 30)),
+                'description' => 'description',
+                'price' => mt_rand(100, 10000) / 100,
             ]);
         }
     }

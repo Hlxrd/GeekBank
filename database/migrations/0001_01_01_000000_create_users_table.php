@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->integer('phone_number');
             $table->string('password');
+            $table->string('gender');
+            $table->string('city');
             $table->boolean('double_auth_permition')->default(false);
             $table->boolean('double_auth_validate')->default(true);
             $table->integer('double_auth_code')->nullable();

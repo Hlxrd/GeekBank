@@ -3,7 +3,7 @@
         @csrf
 
         <div>
-            <h1 class="text-white font-bold">Sign Up</h1>
+            <h3 class="text-white font-bold">Sign Up</h3>
             <p class="text-gray-400 ">It's quick and easy.</p>
 
         </div>
@@ -25,11 +25,32 @@
             </div>
         </div>
         <!-- Email Address -->
-        <div class="mt-4">
+        <div class="mt-2">
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
                 required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-1">
+            <!--  gender -->
+            <div class="mt-4">
+                <x-input-label for="gender" :value="__('gender')" />
+                <select class="block mt-1 w-full bg-[#111827] rounded-md text-white" name="gender" id="gender">
+                    <option value="" disabled selected>select gender</option>
+                    <option value="male">male</option>
+                    <option value="female">female</option>
+                </select>
+                <x-input-error :messages="$errors->get('gender')" class="mt-2" />
+            </div>
+
+            <!-- city Address -->
+            <div class="mt-4">
+                <x-input-label for="city" :value="__('city')" />
+                <x-text-input id="city" class="block mt-1 w-full" type="text" name="city" :value="old('city')"
+                    required autocomplete="username" />
+                <x-input-error :messages="$errors->get('city')" class="mt-2" />
+            </div>
         </div>
 
 
@@ -44,7 +65,7 @@
         </div>
 
         <!-- Confirm Password -->
-        <div class="mt-4">
+        <div class="mt-2">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"

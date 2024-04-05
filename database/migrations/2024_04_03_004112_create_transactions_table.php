@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('card_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('transaction_type');
-            $table->decimal('amount', 12, 2);
-            $table->bigInteger('recipient_rib');
-            $table->string('recipient_profile_name');
-            $table->string('service_name');
+            $table->string('transaction_type')->nullable();
+            $table->decimal('amount', 12, 2)->nullable();
+            $table->bigInteger('recipient_rib')->nullable();
+            $table->string('service_name')->nullable();
+            $table->string('from_card')->nullable();
+            $table->string('to_card')->nullable();
             $table->timestamps();
         });
     }
