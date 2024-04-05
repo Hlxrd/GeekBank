@@ -3,8 +3,11 @@
 use App\Http\Controllers\BillsController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\DoubleAuthController;
+use App\Http\Controllers\HistoryController;
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvestmentController;
+use App\Http\Controllers\LoanController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellerController;
@@ -39,6 +42,11 @@ Route::get('/home/myCard', [CardController::class, 'index'])->name('myCard.index
 Route::post('/home/myCard/addCard', [CardController::class, 'store'])->name('myCard.store');
 Route::delete('/home/myCard/delete/{card}', [CardController::class, 'destroy'])->name('myCard.destroy');
 Route::post('/home/myCard/distributeBalance', [CardController::class, 'distributeBalance'])->name('myCard.distributeBalance');
+
+// ! loan routes 
+Route::get("/home/loan" , [LoanController::class , "index"])->name("loan.index");
+Route::post("/home/loan/takeLoan" , [LoanController::class , "takeLoan"])->name("loan.takeLoan");
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -14,7 +14,7 @@
         </thead>
         <tbody>
             @foreach ($transactions as $transaction)
-                <tr>
+                <tr class="mt-8">
                     <th scope="row">{{ $transaction->user->name }}</th>
                     <th scope="row">{{ $transaction->card->card_number }}</th>
                     <td>{{ $transaction->transaction_type }}</td>
