@@ -65,7 +65,6 @@ class LoanController extends Controller
     public function destroy(Loan $loan)
     {
         //
-        
     }
     /**
      * Store a newly created resource in storage.

@@ -36,7 +36,7 @@ Schedule::call(function () {
         }
         $loan->save();
     }
-})->everyTwoSeconds();
+})->everyMinute();
 Schedule::call(function () {
     User::with('investments', 'cards')->get()->each(function ($user) {
         $user->investments->each(function ($investment) use ($user) {
