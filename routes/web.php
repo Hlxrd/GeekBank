@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BillsController;
 use App\Http\Controllers\CardController;
+use App\Http\Controllers\CryptoController;
 use App\Http\Controllers\DoubleAuthController;
 use App\Http\Controllers\HistoryController;
 
@@ -39,6 +40,9 @@ Route::post('/home/myCard/addCard', [CardController::class, 'store'])->name('myC
 Route::delete('/home/myCard/delete/{card}', [CardController::class, 'destroy'])->name('myCard.destroy');
 Route::post('/home/myCard/distributeBalance', [CardController::class, 'distributeBalance'])->name('myCard.distributeBalance');
 
+//^^Crypto routes
+Route::get('/crypto',[CryptoController::class,'index'])->name('crypto');
+Route::post('/crypto/buy',[CryptoController::class,'buy'])->name('crypto.buy');
 // ! loan routes 
 Route::get("/home/loan" , [LoanController::class , "index"])->name("loan.index");
 Route::post("/home/loan/takeLoan" , [LoanController::class , "takeLoan"])->name("loan.takeLoan");
