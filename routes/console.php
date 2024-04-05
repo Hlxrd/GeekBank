@@ -23,13 +23,16 @@ Artisan::command('inspire', function () {
 Schedule::call(function () {
     $loans = Loan::where('is_paid_off' , false)->get();
     foreach ($loans as $loan) {
-        if (!$loan->is_paid_off && $loan->amount > 0) {
-            $loan->amount = $loan->amount * 0.1; 
-            $loan->save();
+        $repayment_amount = $loan->amount * 0.1;
+        $loan->amount -= $repayment_amount;
+        if ($loan->amount <= 0) {
             
-        } else {
-            $loan->is_paid_off = true ; 
-            $loan->save();
+            $loan->is_paid_off = true;
+        } 
+        if ($loan->amount  >= 0 && $loan->amount  <= 1) {
+            $loan->delete();
+            return back()->with('success', 'your loan is paid off ');
         }
+        $loan->save();
     }
-})->everyTwoSeconds();
+})->everyMinute();
