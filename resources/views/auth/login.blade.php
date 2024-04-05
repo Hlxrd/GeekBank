@@ -5,7 +5,7 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
-        <h1 class="text-white font-bold py-2">Sign in to your account</h1>
+        <h1 class="text-white font-extralight text-center py-2 ">Login</h1>
 
         <!-- Email Address -->
         <div>
@@ -35,17 +35,17 @@
                 <span class="ms-2 text-sm text-white">{{ __('Remember me') }}</span>
             </label>
             @if (Route::has('password.request'))
-                <a class="underline text-sm text-blue-400 hover:text-blue-500  rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                <a class="underline text-sm text-secondary-color hover:text-secondary-color  rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                     href="{{ route('password.request') }}">
                     {{ __('Forgot your password?') }}
                 </a>
             @endif
         </div>
 
-        <button class="btn btn-primary w-full my-3">log in</button>
+        <button class="w-full px-4 py-2 rounded-full my-3 bg-secondary-color">Log In</button>
         <div>
-            <p class="text-gray-400 text-[0.8rem]">Don't have an account yet? <a class="no-underline"
-                    href="{{ route('register') }}">Sign up</a></p>
+            <p class="text-gray-400 font-bold text-[0.8rem]">Don't have an account yet? <a class="no-underline text-secondary-color"
+                    href="{{ route('register') }}" >Sign up</a></p>
         </div>
     </form>
 
