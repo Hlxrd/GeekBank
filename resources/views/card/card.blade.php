@@ -1,7 +1,7 @@
 <x-app-layout>
 
-    <h4>your cards</h4>
-    <table class="table">
+    <h4 class="text-white py-2">Your cards</h4>
+    <table class="bg-gray-800 text-white h-[15vh] table rounded-full">
         <thead>
             <tr>
                 <th scope="col">card number</th>
