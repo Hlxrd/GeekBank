@@ -2,6 +2,7 @@
 
 use App\Models\Card;
 use App\Models\Loan;
+use App\Models\Investment;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Schedule;
@@ -35,4 +36,48 @@ Schedule::call(function () {
         }
         $loan->save();
     }
+})->everyTwoSeconds();
+Schedule::call(function () {
+    User::with('investments', 'cards')->get()->each(function ($user) {
+        $user->investments->each(function ($investment) use ($user) {
+            if ($investment->investment_option_id == 1) {
+                $bonus = $investment->amount * 0.15; 
+                $user->cards->each(function ($card) use ($bonus) {
+                    $card->balance += $bonus;
+                    $card->save(); 
+                });
+            }
+        });
+    });
+})->everyFiveSeconds();
+
+Schedule::call(function () {
+    User::with('investments', 'cards')->get()->each(function ($user) {
+        $user->investments->each(function ($investment) use ($user) {
+            if ($investment->investment_option_id == 2) {
+                $bonus = $investment->amount * 0.20; 
+                $user->cards->each(function ($card) use ($bonus) {
+                    $card->balance += $bonus;
+                    $card->save(); 
+                });
+            }
+        });
+    });
 })->everyMinute();
+
+Schedule::call(function () {
+    User::with('investments', 'cards')->get()->each(function ($user) {
+        $user->investments->each(function ($investment) use ($user) {
+            if ($investment->investment_option_id == 3) {
+                $bonus = $investment->amount * 0.25; 
+                $user->cards->each(function ($card) use ($bonus) {
+                    $card->balance += $bonus;
+                    $card->save(); 
+                });
+            }
+        });
+    });
+})->everyFiveMinutes();
+
+
+
