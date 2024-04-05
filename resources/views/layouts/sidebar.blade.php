@@ -28,7 +28,7 @@
 
         <div class="w-full cursor-pointer flex flex-row justify-center hover:bg-gray-900 hover:border-r-4 transition-all">
             <span class="text-yellow-500 px-4">icon</span>
-            <p class="text-white text-2xl mr-[70px]">History</p>
+            <a href="{{ route('transaction.index') }}" class="text-white text-2xl mr-[70px]">History</a>
         </div>
 
 

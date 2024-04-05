@@ -8,6 +8,7 @@ use App\Http\Controllers\InvestmentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellerController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TransferController;
 use App\Http\Middleware\SellerMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,9 @@ Route::get('/home/bill', [BillsController::class, 'index'])->name('bill.index');
 Route::post('/home/bill/pay', [BillsController::class, 'pay'])->name('bill.pay');
 
 Route::get('/home/investment', [InvestmentController::class, 'invest'])->name('home.invest');
+
+// ! 
+Route::get('/home/transaction', [TransactionController::class, 'index'])->name('transaction.index');
 
 // ? double auth routes
 Route::get('/2fa', [DoubleAuthController::class, 'index'])->name('doubleAuth.index');

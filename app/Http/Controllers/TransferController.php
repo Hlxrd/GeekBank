@@ -48,11 +48,11 @@ class TransferController extends Controller
                 'amount' => $amount,
                 'recipient_rib' => $receive_card->rib,
             ]);
+            return back()->with('success', "The money transfer has been successful.");
         } else {
             return redirect()->route('transfer.index')->withErrors([
                 'errorMessage' => "You don't have this amount on your card."
             ])->onlyInput('amount');
         }
-        return back();
     }
 }
