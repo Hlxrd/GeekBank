@@ -1,13 +1,13 @@
 <x-app-layout>
     <div class="flex flex-col items-center gap-4">
-        <h1 class="pb-4 text-center text-white font-bold">Your Investments</h1>
+        <h1 class="pb-4 text-center text-white font-bold">Your <span class="text-secondary-color">Investments</span> </h1>
 
         <div class="w-[70vw] rounded py-3 px-5 bg-[#ffb000] flex items-center justify-between">
             <div class="w-[100%]">
                 <form method="post" action="{{ route('invest.store') }}"
                     class="flex items-center justify-around w-[100%]">
                     @csrf
-                    <input type="text" name="nameInvest" class="m-0 rounded" placeholder="Insert Invest's Name"
+                    <input type="text" name="nameInvest" class="m-0 rounded border-none " placeholder="Insert Invest's Name"
                         required>
                     <select name="type" class="rounded" required>
                         <option value="" selected disabled>--Select Type--</option>

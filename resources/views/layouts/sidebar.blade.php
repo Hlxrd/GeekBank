@@ -1,4 +1,4 @@
-<div class="sidebar bg-gray-900 position-relative w-[20vw]">
+<div class="sidebar  bg-gray-900 position-relative w-[20vw]">
 
 
     <div class="textsidebarcontent text-center py-4 flex flex-col h-[90vh] justify-around item-center">
