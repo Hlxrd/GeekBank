@@ -4,8 +4,11 @@ use App\Http\Controllers\BillsController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\CryptoController;
 use App\Http\Controllers\DoubleAuthController;
+use App\Http\Controllers\HistoryController;
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvestmentController;
+use App\Http\Controllers\LoanController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellerController;
@@ -40,6 +43,10 @@ Route::post('/home/myCard/distributeBalance', [CardController::class, 'distribut
 //^^Crypto routes
 Route::get('/crypto',[CryptoController::class,'index'])->name('crypto');
 Route::post('/crypto/buy',[CryptoController::class,'buy'])->name('crypto.buy');
+// ! loan routes 
+Route::get("/home/loan" , [LoanController::class , "index"])->name("loan.index");
+Route::post("/home/loan/takeLoan" , [LoanController::class , "takeLoan"])->name("loan.takeLoan");
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

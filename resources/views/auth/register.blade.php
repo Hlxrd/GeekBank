@@ -75,12 +75,12 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-blue-400 hover:text-blue-500  rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+            <a class="underline text-sm text-secondary-color hover:text-secondary-color  rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                 href="{{ route('login') }}">
                 {{ __('Already registered?') }}
             </a>
 
         </div>
-        <button class="btn btn-primary w-full mt-4">register</button>
+        <button class="py-2 px-4 rounded-full bg-secondary-color w-full mt-4">SignUp</button>
     </form>
 </x-guest-layout>
