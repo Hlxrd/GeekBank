@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BillsController;
 use App\Http\Controllers\CardController;
+use App\Http\Controllers\CryptoController;
 use App\Http\Controllers\DoubleAuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvestmentController;
@@ -35,6 +36,10 @@ Route::get('/home/myCard', [CardController::class, 'index'])->name('myCard.index
 Route::post('/home/myCard/addCard', [CardController::class, 'store'])->name('myCard.store');
 Route::delete('/home/myCard/delete/{card}', [CardController::class, 'destroy'])->name('myCard.destroy');
 Route::post('/home/myCard/distributeBalance', [CardController::class, 'distributeBalance'])->name('myCard.distributeBalance');
+
+//^^Crypto routes
+Route::get('/crypto',[CryptoController::class,'index'])->name('crypto');
+Route::post('/crypto/buy',[CryptoController::class,'buy'])->name('crypto.buy');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
