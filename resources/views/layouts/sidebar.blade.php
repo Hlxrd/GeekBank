@@ -1,39 +1,34 @@
-<div class="sidebar bg-gray-900 w-[20vw]">
+<div class="sidebar bg-gray-900 position-relative w-[20vw]">
 
 
     <div class="textsidebarcontent text-center py-4 flex flex-col h-[90vh] justify-around item-center">
         <div class="w-full flex justify-center">
-
+        
+    </div>
+        
+        <div class="w-full cursor-pointer flex flex-row justify-center hover:bg-primary-color py-2 hover:border-r-4 transition-all">
+            <span class="text-secondary-color px-4">icon</span>
+            <a href="{{ route('crypto') }}" class="text-white text-xl mr-14 no-underline">Crypto</a>
         </div>
 
-        <div
-            class="w-full cursor-pointer flex flex-row justify-center hover:bg-primary-color hover:border-r-4 transition-all">
+        <div class="w-full cursor-pointer flex flex-row justify-center hover:bg-primary-color hover:border-r-4 transition-all">
             <span class="text-secondary-color px-4">icon</span>
-            <p class="text-white text-xl mr-14">Balance</p>
+            <a href="{{ route('transfer.index') }}" class="text-white text-xl mr-14 no-underline">Transfer</a>
         </div>
 
-        <div
-            class="w-full cursor-pointer flex flex-row justify-center hover:bg-primary-color hover:border-r-4 transition-all">
+        <div class="w-full cursor-pointer flex flex-row justify-center hover:bg-primary-color hover:border-r-4 transition-all">
             <span class="text-secondary-color px-4">icon</span>
-            <p class="text-white text-xl mr-14">Transfer</p>
+            <a href="{{ route('myCard.index') }}" class="text-white text-xl mr-10 no-underline">Exchange</a>
         </div>
 
-        <div
-            class="w-full cursor-pointer flex flex-row justify-center hover:bg-primary-color hover:border-r-4 transition-all">
+        <div class="w-full cursor-pointer flex flex-row justify-center hover:bg-primary-color hover:border-r-4 transition-all">
             <span class="text-secondary-color px-4">icon</span>
-            <p class="text-white text-xl mr-10">Exchange</p>
+            <a href="{{ route('invest.index') }}" class="text-white text-xl mr-5 no-underline">Investement</a>
         </div>
 
-        <div
-            class="w-full cursor-pointer flex flex-row justify-center hover:bg-primary-color hover:border-r-4 transition-all">
+        <div class="w-full cursor-pointer flex flex-row justify-center hover:bg-primary-color hover:border-r-4 transition-all">
             <span class="text-secondary-color px-4">icon</span>
-            <p class="text-white text-xl mr-5">Investement</p>
-        </div>
-
-        <div
-            class="w-full cursor-pointer flex flex-row justify-center hover:bg-primary-color hover:border-r-4 transition-all">
-            <span class="text-secondary-color px-4">icon</span>
-            <a href="{{ route('transaction.index') }}" class="text-white text-xl mr-[70px]">History</a>
+            <p class="text-white text-xl mr-[70px]">History</p>
         </div>
 
 

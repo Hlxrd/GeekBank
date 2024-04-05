@@ -1,7 +1,7 @@
 <x-app-layout>
 
-    <h4>your cards</h4>
-    <table class="table">
+    <h3 class="text-white py-2 ">Your cards</h3>
+    <table class="bg-gray-800 text-white h-[15vh] table">
         <thead>
             <tr>
                 <th scope="col">card number</th>
@@ -30,12 +30,11 @@
 
 
 
-    <h4>distribute your balance between your cards</h4>
     <form action="{{ route('myCard.distributeBalance') }}" method="post">
         @csrf
         <div class="flex flex-col">
-            <label for="">from card</label>
-            <select name="source_card" id="">
+            <label for="" class="text-white text-xl py-3">Select a card</label>
+            <select name="source_card" id="" class="rounded-full">
                 <option value="">select a card</option>
                 @foreach ($userCards as $card)
                     <option value="{{ $card->id }}">{{ $card->card_number }}</option>
@@ -46,8 +45,8 @@
             @enderror
         </div>
         <div class="flex flex-col">
-            <label for="">to card</label>
-            <select name="receive_card" id="">
+            <label for="" class="text-white text-xl py-3" >To card</label>
+            <select class="rounded-full" name="receive_card" id="">
                 <option value="">select a card</option>
                 @foreach ($userCards as $card)
                     <option value="{{ $card->id }}">{{ $card->card_number }}</option>
@@ -58,20 +57,20 @@
             @enderror
         </div>
         <div class="flex flex-col pt-2">
-            <label for="">amount</label>
-            <input type="number" name="amount" placeholder="amount">
+            <label for="" class="text-white text-xl py-3" >Amount</label>
+            <input class="rounded-full" type="number" name="amount" placeholder="amount">
             @error('amount')
                 <span class="text-red-500">{{ $message }}</span>
             @enderror
         </div>
-        <button class="btn btn-secondary mt-4">submit</button>
+        <button class="bg-secondary-color px-4 py-2 rounded-full mt-4">Submit</button>
     </form>
 
-    <h4>request additional card:</h4>
+    <h4 class="text-white py-4">Request additional card:</h4>
     <form action="{{ route('myCard.store') }}" method="post">
         @csrf
         <div class="flex flex-col">
-            <button class="btn btn-primary w-[15%]">request the card</button>
+            <button class="px-8 py-2 bg-red-500 text-white rounded-full w-[15%]">Request the card</button>
             @error('errorMessage')
                 <span class="text-red-500">{{ $message }}</span>
             @enderror

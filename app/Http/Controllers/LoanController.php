@@ -40,39 +40,32 @@ class LoanController extends Controller
 
         $userLoans = Loan::all();
 
+        $existingLoan = Loan::where('user_id', auth()->id())->where('is_paid_off', false)->first();
+
+        if ($existingLoan) {
+            return redirect()->back()->with('error', 'You have an active loan. Please pay off the existing loan to request a new one.');
+        }
+
+        $amount = (int) $request->amount;
+
         if ($amount <= $cardSelecte->balance * 2) {
+
             Loan::create([
                 'user_id' => auth()->user()->id,
                 'amount' => $amount,
                 'is_paid_off' => false,
             ]);
-
-        }elseif ($userLoans->amount != 0) {
+        } elseif ($userLoans->amount != 0) {
             dd('ta tkhalles');
         }
-        // $card = Card::where('id', auth()->user()->id);
-        // $user = auth()->user();
-
-        // $loan = new Loan();
-        // $loan->user_id = $user->id; // Associate the loan with the current user
-        // $loan->amount = $request->amount;
-        // $loan->save();
-
-
-
-
-        // $max_loan_amount = $card->balance * 2;
-
-        // if ($request->loan_amount > $max_loan_amount) {
-        //     return redirect()->back()->with('error', 'Loan amount exceeds 200% of your current balance.');
-        // }
-
-        // $card->balance += $request->loan_amount;
-        // $card->save();
 
         return redirect()->back()->with('success', 'Loan successfully added to your card balance.');
     }
 
+    public function destroy(Loan $loan)
+    {
+        //
+    }
     /**
      * Store a newly created resource in storage.
      */
@@ -108,8 +101,4 @@ class LoanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
 }
