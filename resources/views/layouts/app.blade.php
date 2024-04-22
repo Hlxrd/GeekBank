@@ -12,8 +12,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-<link rel="./sass/home.scss" href="">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="./sass/home.scss" href="">
 </head>
 
 <body class="">
@@ -21,13 +23,13 @@
         @include('layouts.navigation')
 
         @include('layouts.flash')
-        
+
         <!-- Page Content -->
         <div class="flex ">
-        @include('layouts.sidebar')            
-        <main class="p-[2rem] bg-gray-900 w-full position-relative">
-            {{ $slot }}
-        </main>
+            @include('layouts.sidebar')
+            <main class="p-[2rem] bg-gray-400 w-full  position-relative mt-[13vh] ms-[20vw]">
+                {{ $slot }}
+            </main>
         </div>
 
     </div>
